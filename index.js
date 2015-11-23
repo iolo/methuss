@@ -42,12 +42,37 @@ var fetchUrl = require('./src/fetch').fetchUrl;
 var parseMeta = require('./src/parse').parseMeta;
 
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
-app.get('/', function (req, res, next) {
-    var url = req.query.url;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+var hello = '<h1 id="methuss">Methuss</h1>' +
+            '<blockquote>' +
+            '<p>ogcache server before</p>' +
+            '</blockquote>' +
+            '<p>html meta tags(opengraph/twittercard) fetch/parse/cache server.</p>' +
+            '<h3 id="debug">DEBUG</h3>' +
+            '<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>DEBUG=*&nbsp;node&nbsp;index.js</span></span></span></div></pre><p>or</p>' +
+            '<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>DEBUG=*&nbsp;nodemon&nbsp;index.js</span></span></span></div></pre><h3 id="use">USE</h3>' +
+            '<p>GET</p>' +
+            '<blockquote>' +
+            '<p>curl &#39;localhost:3000/?url=http://ppss.kr&#39;</p>' +
+            '</blockquote>' +
+            '<p>POST (x-www-form-urlencoded)</p>' +
+            '<blockquote>' +
+            '<p>curl &#39;localhost:3000&#39; -d &#39url=http://ppss.kr&#39;</p>' +
+            '</blockquote>' +
+            '<h2 id="for-jedi">FOR JEDI</h2>' +
+            '<p>may the <em>source</em> be with you...</p>';
+
+
+app.all('*', function (req, res, next) {
+    var url = req.query.url || req.body.url;
+
     if (!url) {
-        return res.status(400);
+        return res.status(400).send(hello);
     }
 
     var key = hashUrl(url);

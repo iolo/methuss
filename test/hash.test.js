@@ -1,6 +1,6 @@
 'use strict';
-var assert = require('assert');
-var hash = require('../src/hash');
+const assert = require('assert');
+const hash = require('../src/hash');
 describe('hash', function () {
     it('hashUrl should fail for undefined', function () {
         assert.throws(hash.hashUrl);

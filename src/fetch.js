@@ -1,8 +1,8 @@
 'use strict';
-var debug = require('debug')('methuss:fetch');
-var DEBUG = !!debug.enabled;
+const debug = require('debug')('methuss:fetch');
+const DEBUG = !!debug.enabled;
 
-var fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 function fetchUrl(url) {
     DEBUG && debug('fetchUrl...', url);
@@ -14,7 +14,7 @@ function fetchUrl(url) {
         if (res.status >= 200 && res.status < 300) {
             return res.text();
         }
-        var e = new Error('fetchUrl error');
+        const e = new Error('fetchUrl error');
         e.cause = res;
         throw e;
     });

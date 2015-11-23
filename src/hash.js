@@ -1,12 +1,12 @@
 'use strict';
-var debug = require('debug')('methuss:hash');
-var DEBUG = !!debug.enabled;
+const debug = require('debug')('methuss:hash');
+const DEBUG = !!debug.enabled;
 
-var crypto = require('crypto');
+const crypto = require('crypto');
 
 // no need to secure! just a short unique key!
 function hashUrl(url) {
-    var hash = crypto.createHash('md5');
+    const hash = crypto.createHash('md5');
     return hash.update(url, 'utf8')
         .digest('base64')
         .replace(/\+/g, '-') // + --> -

@@ -1,8 +1,8 @@
 'use strict';
-var debug = require('debug')('methuss:cache');
-var DEBUG = !!debug.enabled;
+const debug = require('debug')('methuss:cache');
+const DEBUG = !!debug.enabled;
 
-var metaCache = require('lru-cache')({max: 100, maxAge: 1000 * 60 * 60});
+const metaCache = require('lru-cache')({max: 100, maxAge: 1000 * 60 * 60});
 
 function loadMeta(key) {
     DEBUG && debug('loadMeta...', key);
@@ -14,7 +14,7 @@ function loadMeta(key) {
 function saveMeta(key, meta) {
     DEBUG && debug('saveMeta...', key);
     metaCache.set(key, meta);
-    return meta;
+    return Promise.resolve(meta);
 }
 
 module.exports = {

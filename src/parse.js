@@ -1,17 +1,17 @@
 'use strict';
-var debug = require('debug')('methuss:parse');
-var DEBUG = !!debug.enabled;
+const debug = require('debug')('methuss:parse');
+const DEBUG = !!debug.enabled;
 
-var htmlparser = require('htmlparser2');
+const htmlparser = require('htmlparser2');
 
 function parseMeta(html) {
     DEBUG && debug('parseMeta...');
     if (!html) {
-        return Promise.reject('invalid html');
+        return Promise.reject(new Error('invalid html'));
     }
     return new Promise(function (resolve, reject) {
-        var meta = {};
-        var parser = new htmlparser.Parser({
+        const meta = {};
+        const parser = new htmlparser.Parser({
             onopentag: function (name, attrs) {
                 if (name === 'body' || name === 'BODY') {
                     debug('parse early stop');
@@ -26,7 +26,7 @@ function parseMeta(html) {
                 resolve(meta);
             },
             onerror: function (err) {
-                var e = new Error('parseMeta error');
+                const e = new Error('parseMeta error');
                 e.cause = err;
                 reject(e);
             }

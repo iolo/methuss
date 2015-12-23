@@ -4,7 +4,10 @@ html
         meta(charset='utf-8')
         meta(http-equiv='X-UA-Compatible',content='IE=edge')
         meta(name='viewport',content='width=device-width, initial-scale=1')
-        title Methuss - !{title}
+        meta(name="original-source",content="#{meta.url}")
+        title Methuss - !{meta.title}
+        meta(property="methuss:url",content="#{meta.url}")
+        meta(property="methuss:key",content="#{meta.key}")
         each value, key in meta
             meta(property="#{key}",content="#{value}")
     body

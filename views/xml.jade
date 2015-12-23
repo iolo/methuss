@@ -1,0 +1,4 @@
+doctype xml
+metas(url="#{meta.url}",key="#{meta.key}")
+  each value, key in meta
+    meta(property="#{key}",content="#{value}")

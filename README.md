@@ -1,33 +1,67 @@
 Methuss
 =======
 
-> ogcache server before
-
 html meta tags(opengraph/twittercard) fetch/parse/cache server.
 
-### DEBUG
+## Developer Install
+
+##### Install Prerequisites
+
+as you wish ;)
+
+##### Install Methuss and its Dependencies
 
 ```
-DEBUG=* node index.js
+$ git clone git@github.com:iolo/methuss.git
+$ cd methuss
+$ npm install
 ```
 
-or
+##### Launch Methuss
+
+run with npm:
+```
+$ npm start
+```
+or run with your favorite process manager such as nodemon or pm2 or forever or else:
+```
+$ nodemon index.js
+```
+
+##### Debug
+
+To see verbose debug log:
+```
+$ export DEBUG='*'
+```
+before run.
+
+## Production Install(Not Yet Recommended)
+
+##### Install Methuss with Its Dependencies
 
 ```
-DEBUG=* nodemon index.js
+$ npm install -g methuss
 ```
 
-### USE
+##### Launch Methuss
 
-GET
+```
+$ methuss-server
+```
 
-> curl 'localhost:3000/?url=http://ppss.kr'
+## Usage
 
-POST (x-www-form-urlencoded)
+get meta tags as json/html/xml and image with `Accept` header:
+```
+$ curl 'localhost:3000/metas?url=http://ppss.kr' -H 'Accept:application/json'
+```
+or format in url
+```
+$ curl 'localhost:3000/metas.json?url=http://ppss.kr'
+```
+or else...
 
-> curl 'localhost:3000' -d 'url=http://ppss.kr'
-
-FOR JEDI
---------
+---
 
 may the *source* be with you...

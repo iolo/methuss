@@ -1,0 +1,87 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible',content='IE=edge')
+        meta(name='viewport',content='width=device-width, initial-scale=1')
+        title Methuss
+        link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',integrity='sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==',crossorigin='anonymous')
+        link(rel='stylesheet',href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css',integrity='sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX',crossorigin='anonymous')
+        <!--[if lt IE 9]>
+        script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+        script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+        <![endif]-->
+        meta(property="og:url",content="https://github.com/iolo/methuss")
+        meta(property="og:title",content="methuss")
+        meta(property="og:description",content="html meta tags(opengraph/twittercard/...) fetch/parse/cache server")
+    body
+        .container
+            .jumbotron
+                h1 Methuss
+                p html meta tags(opengraph/twittercard) fetch/parse/cache server.
+
+            h2 Developer Install
+
+            h5 Install Prerequisites
+
+            p as you wish ;)
+
+            h5 Install Methuss and Its Dependencies
+
+            pre: code.
+              $ git clone git@github.com:iolo/methuss.git
+              $ cd methuss
+              $ npm install
+
+            h5 Launch Methuss
+
+            p run with npm:
+
+            pre: code.
+              $ npm start
+
+            p or run with your favorite process manager such as nodemon or pm2 or forever or else:
+
+            pre: code.
+              $ nodemon index.js
+
+            h5 Debug
+
+            p To see verbose debug log:
+
+            pre: code.
+              $ export DEBUG='*'
+
+            p before run.
+
+            h2 Production Install(Not Yet Recommended)
+
+            h5 Install Methuss with Its Dependencies
+
+            pre: code.
+              $ npm install -g methuss
+
+            h5 Launch Methuss
+
+            pre: code.
+              $ methuss-server
+
+            h2 Usage
+
+            p get meta tags as json/html/xml or image with <code>Accept</code> header:
+
+            pre: code.
+              $ curl 'localhost:3000/metas?url=http://ppss.kr' -H 'Accept:application/json'
+
+            p or format in url
+
+            pre: code.
+              $ curl 'localhost:3000/metas.json?url=http://ppss.kr'
+
+            p or else...
+
+            hr
+
+            p may the *source* be with you...
+
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',integrity='sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==',crossorigin='anonymous')

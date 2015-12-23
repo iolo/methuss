@@ -73,10 +73,13 @@ html
             pre: code.
               $ curl 'localhost:3000/metas?url=http://ppss.kr' -H 'Accept:application/json'
 
-            p or format in url
+            p or <code>format</code> in url:
 
             pre: code.
               $ curl 'localhost:3000/metas.json?url=http://ppss.kr'
+              $ curl 'localhost:3000/metas.html?url=http://ppss.kr'
+              $ curl 'localhost:3000/metas.xml?url=http://ppss.kr'
+              $ curl 'localhost:3000/metas.png?url=http://ppss.kr'
 
             p or else...
 

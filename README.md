@@ -56,9 +56,12 @@ get meta tags as json/html/xml and image with `Accept` header:
 ```
 $ curl 'localhost:3000/metas?url=http://ppss.kr' -H 'Accept:application/json'
 ```
-or format in url
+or `format` in url:
 ```
 $ curl 'localhost:3000/metas.json?url=http://ppss.kr'
+$ curl 'localhost:3000/metas.html?url=http://ppss.kr'
+$ curl 'localhost:3000/metas.xml?url=http://ppss.kr'
+$ curl 'localhost:3000/metas.png?url=http://ppss.kr'
 ```
 or else...
 

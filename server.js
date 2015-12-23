@@ -81,6 +81,7 @@ app.all('/metas.:format?', function (req, res, next) {
                 meta.key = key;
                 meta.title = meta.title || meta['og:title'] || meta['twitter:title'];
                 meta.image = meta.image || meta['og:image'] || meta['twitter:image'];
+                meta.description = meta.description || meta['og:description'] || meta['twitter:description'];
                 return saveMeta(key, meta);
             });
     }).then(function (meta) {

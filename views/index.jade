@@ -20,7 +20,7 @@ html
                 h1 Methuss
                 p html meta tags(opengraph/twittercard) fetch/parse/cache server.
 
-            h2 Developer Install
+            h2.page-header Developer Install
 
             h5 Install Prerequisites
 
@@ -54,7 +54,7 @@ html
 
             p before run.
 
-            h2 Production Install(Not Yet Recommended)
+            h2.page-header Production Install(Not Yet Recommended)
 
             h5 Install Methuss with Its Dependencies
 
@@ -66,20 +66,20 @@ html
             pre: code.
               $ methuss-server
 
-            h2 Usage
+            h2.page-header Usage
 
             p get meta tags as json/html/xml or image with <code>Accept</code> header:
 
             pre: code.
-              $ curl 'localhost:3000/metas?url=http://ppss.kr' -H 'Accept:application/json'
+              $ curl '#{baseUrl}/metas?url=http://ppss.kr' -H 'Accept:application/json'
 
             p or <code>format</code> in url:
 
             pre: code.
-              $ curl 'localhost:3000/metas.json?url=http://ppss.kr'
-              $ curl 'localhost:3000/metas.html?url=http://ppss.kr'
-              $ curl 'localhost:3000/metas.xml?url=http://ppss.kr'
-              $ curl 'localhost:3000/metas.png?url=http://ppss.kr'
+              $ curl '#{baseUrl}/metas.json?url=http://ppss.kr'
+              $ curl '#{baseUrl}/metas.html?url=http://ppss.kr'
+              $ curl '#{baseUrl}/metas.xml?url=http://ppss.kr'
+              $ curl '#{baseUrl}/metas.png?url=http://ppss.kr'
 
             p or else...
 
@@ -87,4 +87,5 @@ html
 
             p may the *source* be with you...
 
+        script(src="http://code.jquery.com/jquery-1.11.3.min.js")
         script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',integrity='sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==',crossorigin='anonymous')

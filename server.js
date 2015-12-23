@@ -47,15 +47,17 @@ const screenshotUrl = require('./src/screenshot').screenshotUrl;
 
 const express = require('express');
 const morgan = require('morgan');
+const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'jade');
 app.use(morgan('combined'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/public'));
 
 app.all('/metas.:format?', function (req, res, next) {
     let url = req.query.url || req.body.url;
@@ -95,23 +97,23 @@ app.all('/metas.:format?', function (req, res, next) {
             break;
         case 'html':
         case 'xml':
-            res.type(format).render(format, {meta: meta});
+            let embed = req.query.embed || req.body.embed;
+            let view = embed ? 'embed' : format;
+            res.type(format).render(view, {meta: meta});
             break;
         case 'png':
         case 'image/png':
             let screenshot = req.query.screenshot || req.body.screenshot;
             if (screenshot || !meta.image) {
-                let opts = {
-                    width: req.query.width || req.body.height || 0,
-                    height: req.query.height || req.body.height || 0
-                };
-                let file = '/tmp/methuss/screenshot-' + meta.key + '-' + opts.width + 'x' + opts.height + '.png';
+                let width = req.query.width || req.body.height || 0;
+                let height = req.query.height || req.body.height || 0;
+                let file = '/tmp/methuss/screenshot-' + key + '-' + width + 'x' + height + '.png';
                 fs.exists(file, function (exists) {
                     if (exists && screenshot !== 'always') {
                         DEBUG && debug('send existing screenshot:', file);
                         return res.sendfile(file);
                     }
-                    screenshotUrl(meta.url, opts).then(function (outputFile) {
+                    screenshotUrl(url, {width: width, height: height}).then(function (outputFile) {
                         fs.unlink(file, function (err) {
                             if (err) {
                                 DEBUG && debug('failed to delete existing screenshot:', file);
@@ -142,7 +144,8 @@ app.all('/metas.:format?', function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
-    return res.render('index', {port: app.get('port')});
+        console.log(req.headers);
+    return res.render('index', {baseUrl:req.protocol + '://' + req.get('host')});
 });
 
 app.listen(app.get('port'), function () {

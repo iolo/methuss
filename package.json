@@ -1,6 +1,6 @@
 {
   "name": "methuss",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "html meta tags(opengraph/twittercard) fetch/parse/cache server",
   "author": "Dongsu Jang <iolothebard@gmail.com>",
   "repository": {

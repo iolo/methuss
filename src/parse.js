@@ -14,12 +14,18 @@ function parseMeta(html) {
         const parser = new htmlparser.Parser({
             onopentag: function (name, attrs) {
                 if (name === 'body' || name === 'BODY') {
-                    debug('parse early stop');
+                    DEBUG && debug('parse early stop');
                     return parser.parseComplete();
                 }
-                if ((name === 'meta' || name === 'META') && attrs.property && attrs.content) {
-                    debug('parse meta', attrs);
-                    meta[attrs.property.toLowerCase()] = attrs.content;
+                if (name === 'meta' || name === 'META') {
+                    // facebook opengraph uses "property" attr
+                    // but twitter card and others use "name" attr
+                    var propertyName = attrs.property || attrs.name;
+                    var propertyValue = attrs.content;
+                    if (propertyName && propertyValue) {
+                        DEBUG && debug('parse meta', attrs);
+                        meta[propertyName.toLowerCase()] = propertyValue;
+                    }
                 }
             },
             onend: function () {
